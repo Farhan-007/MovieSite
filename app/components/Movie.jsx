@@ -10,11 +10,14 @@ export function MovieGrid({ movieArr }) {
                 movieArr ?
                     <div className="search-index flex flex-wrap justify-center gap-10">
                         {movieArr.map((movie, idx) => (
-                            <Link href={`/movie/${movie.imdbID}`} key={idx}  >
-                                <img
-                                    className=" w-52 h-full object-cover "
-                                    src={movie.Poster}
-                                    alt="" />
+                            <Link href={`/movie/${movie.imdbID}`} key={idx} >
+                                <span className="">
+                                    <img
+                                        className=" w-52 h-full object-cover "
+                                        src={movie.Poster}
+                                        alt="" />
+                                    {/* <p> {movie.Title.slice(0,10)} </p> */}
+                                </span>
                             </Link>
                         ))}
                     </div>
@@ -41,14 +44,14 @@ export function MovieCard({ movieData }) {
         setIsOpen(false);
     };
 
-
-    const videoSrc = `https://vidsrc.xyz/embed/${movieData.Type == "series"? 'tv' : 'movie' }?imdb=${movieData.imdbID}`; // Replace with actual video URL
+    console.log(movieData)
+    const videoSrc = `https://vidsrc.xyz/embed/${movieData.Type == "series" ? 'tv' : 'movie'}?imdb=${movieData.imdbID}`; // Replace with actual video URL
 
 
     return (
         <div className="flex flex-col w-full" >
-            <div className={ isOpen? 'flex relative min-h-[30vh] sm:min-h-[80vh] h-full w-full rounded-2xl mb-5' : '' } >
-                { isOpen? <Vidsrc src={videoSrc} /> : null}
+            <div className={isOpen ? 'flex relative min-h-[30vh] sm:min-h-[80vh] h-full w-full rounded-2xl mb-5' : ''} >
+                {isOpen ? <Vidsrc src={videoSrc} /> : null}
             </div>
             {movieData ?
                 <>
